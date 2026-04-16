@@ -64,7 +64,7 @@ module "app_service" {
   app_service_name = "as-user15"
   app_service_plan_id = module.service_plan.app_service_plan.id
   identity_client_id = data.azurerm_user_assigned_identity.example.client_id
-  identity_id = data.azurerm_user_assigned_identity.example.client_id
+  identity_id = data.azurerm_user_assigned_identity.example.id
   resource_group = {
     location = local.location
     name     = local.resource_group_name
