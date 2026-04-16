@@ -89,7 +89,7 @@ module "mssql_server" {
   databases = [{
     name = "db-user15"
     sku = "S0"
-    size = "20GB"
+    size = 20
     collation = "SQL_Latin1_General_CP1_CI_AS"
     storage_account_type = "Local"
   }]
