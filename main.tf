@@ -72,7 +72,7 @@ module "app_service" {
   app_settings = {
     "ApplicationInsights__ConnectionString" = module.application_insights.connection_string
     "ConnectionStrings__RazorPagesMovieContext" = "Server=tcp:mssqluser15.database.windows.net,1433;Initial Catalog=db-user15;Persist Security Info=False;User ID=user15;Password=Eh(HoUk:r$B(%=1gV!Z-nV:z+U?W@6K5tM5};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
-    "AzureKeyVault__SecretKey" = "@Microsoft.KeyVault(SecretUri=https://${module.keyvault.keyvault.vault_uri}secrets/secret-user15)"
+    "AzureKeyVault__SecretKey" = "@Microsoft.KeyVault(VaultName=kvuser15;SecretName=secret-user15)"
     "ASPNETCORE_ENVIRONMENT" = "Production"
   }
 }
