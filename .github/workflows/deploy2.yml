@@ -30,6 +30,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
+          cd src
           docker build -t ${{ secrets.ACR_LOGIN_SERVER }}/example-webapp:latest .
 
       - name: Push Docker Image to ACR
