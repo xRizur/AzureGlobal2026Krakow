@@ -86,13 +86,13 @@ module "mssql_server" {
   sql_server_admin = "user15"
   sql_server_name = "mssqluser15"
   sql_server_version = "12.0"
-  databases {
+  databases = [{
     name = "db-user15"
     sku_name = "S0"
     size = "20GB"
     collation = "SQL_Latin1_General_CP1_CI_AS"
     storage_account_type = "Local"
-  }
+  }]
 }
 
 module "container_registry" {
