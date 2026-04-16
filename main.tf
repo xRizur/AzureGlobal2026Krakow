@@ -62,7 +62,7 @@ module "app_service" {
   source = "git::https://github.com/pchylak/global_azure_2026_ccoe.git?ref=app_service/v1.0.0"
   # also any inputs for the module (see below)
   app_service_name = "as-user15"
-  app_service_plan_id = module.service_plan.id
+  app_service_plan_id = module.service_plan.app_service_plan.id
   identity_client_id = data.azurerm_user_assigned_identity.example.client_id
   identity_id = data.azurerm_user_assigned_identity.example.id
   resource_group = {
