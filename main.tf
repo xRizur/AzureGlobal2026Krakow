@@ -80,7 +80,7 @@ module "app_service" {
 resource "azurerm_key_vault_secret" "secret" {
   name = "secret-user15"
     value = "mysecretvalue"
-    key_vault_id = module.keyvault.keyvault.id
+    key_vault_id = module.keyvault.vault_id
 }
 
 module "mssql_server" {
