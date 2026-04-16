@@ -12,7 +12,7 @@ provider "azurerm" {
 
 locals {
     resource_group_name = "rg-user15"
-    location            = "westeurope"
+    location            = "swedencentral"
 }
 
 data "azurerm_user_assigned_identity" "example" {
@@ -69,7 +69,9 @@ module "app_service" {
     location = local.location
     name     = local.resource_group_name
   }
-  app_settings = {}
+  app_settings = {
+    "APPINSIGHTS_INSTRUMENTATIONKEY" = module.application_insights.instrumentation_key
+  }
 }
 
 module "mssql_server" {
@@ -82,6 +84,7 @@ module "mssql_server" {
   sql_server_admin = "user15"
   sql_server_name = "mssql-user15"
   sql_server_version = "12.0"
+
 }
 
 module "container_registry" {
@@ -94,4 +97,15 @@ module "container_registry" {
     container_registry_name = "acruser15"
     read_access = ["${data.azurerm_user_assigned_identity.example.id}"]
     write_access = ["${data.azurerm_user_assigned_identity.example.id}"]
+}
+
+module "application_insights" {
+  source = "git::https://github.com/pchylak/global_azure_2026_ccoe.git?ref=application_insights/v1.0.0"
+  # also any inputs for the module (see below)
+  application_insights_name = "appi-user15"
+  log_analytics_name = "la-user15"
+  resource_group = {
+        location = local.location
+        name     = local.resource_group_name
+    }
 }
