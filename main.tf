@@ -64,7 +64,7 @@ module "app_service" {
   app_service_name = "as-user15"
   app_service_plan_id = module.service_plan.app_service_plan.id
   identity_client_id = data.azurerm_user_assigned_identity.example.client_id
-  identity_id = data.azurerm_user_assigned_identity.example.id
+  identity_id = data.azurerm_user_assigned_identity.example.client_id
   resource_group = {
     location = local.location
     name     = local.resource_group_name
@@ -82,7 +82,7 @@ module "mssql_server" {
     name     = local.resource_group_name
   }
   sql_server_admin = "user15"
-  sql_server_name = "mssql-user15"
+  sql_server_name = "mssqluser15"
   sql_server_version = "12.0"
 
 }
@@ -95,8 +95,8 @@ module "container_registry" {
         name     = local.resource_group_name
     }
     container_registry_name = "acruser15"
-    read_access = ["${data.azurerm_user_assigned_identity.example.id}"]
-    write_access = ["${data.azurerm_user_assigned_identity.example.id}"]
+    read_access = ["${data.azurerm_user_assigned_identity.example.client_id}"]
+    write_access = ["${data.azurerm_user_assigned_identity.example.client_id}"]
 }
 
 module "application_insights" {
