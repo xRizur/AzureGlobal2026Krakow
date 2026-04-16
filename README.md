@@ -67,6 +67,7 @@ This workshop showcased best practices for modern DevOps workflows with **Terraf
     - main.tf
     - .github/workflows/deploy.yml
 
+
 ## main.tf
 ```hcl
 terraform {
